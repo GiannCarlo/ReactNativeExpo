@@ -1,17 +1,12 @@
 import React from 'react';
-import { render, fireEvent, waitFor } from '@testing-library/react-native';
-import { NavigationContainer } from '@react-navigation/native';
-
-
-import ProfileScreen from '../src/screens/ProfileScreen'
+import { render, fireEvent ,screen} from '@testing-library/react-native';
 import HomeScreen from '../src/screens/HomeScreen'
 
 describe('HomeScreen', () => {
   it('navigates on button press', () => {
-    const push = jest.fn();
     const navigate = jest.fn();
-    const { getByText } = render(<HomeScreen navigation={{ navigate }} />);
-    fireEvent.press(getByText('Go to Profile'));
+    render(<HomeScreen navigation={{ navigate }} />);
+    fireEvent.press(screen.getByTestId('btnProfile'));
     expect(navigate).toHaveBeenCalledWith('Profile');
   });
 });
